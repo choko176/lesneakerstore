@@ -33,11 +33,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=e-commerce','root','root');
         <a class="nav-link" href="logout.php">Log Out</a>
       </li>
       <li class="nav-item active">
-       <!--  <a class="nav-link" href="panier.php?id=<?php $_SESSION['id'] ?>"><img id="card" src="img/cart_1.png" alt="image-panier"></a> -->
+        <a class="nav-link" href="panier.php"><img id="card" src="img/cart_1.png" alt="image-panier"></a>
       </li>
     </ul>
 
   </div>
 </nav>
 </header>
-<br><br>
+<br>
