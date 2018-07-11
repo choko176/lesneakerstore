@@ -3,51 +3,11 @@ session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=e-commerce','root','root');
 
-if (isset($_GET['id']) AND $_GET['id'] > 0)
-{
-  $getid = intval($_GET['id']);
-  $requser = $bdd->prepare("SELECT * FROM users WHERE id =?");
-  $requser->execute(array($getid));
-  $userinfo = $requser->fetch();
+$req        = "SELECT * FROM produits WHERE id = ".$_GET['id'].""; 
+$query      = $bdd->query($req); 
+$product    = $query->fetchAll();
 
-}
-
-  $db = new PDO('mysql:host=localhost;dbname=e-commerce', 'root','root');
-  $db->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);     
-  $db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION); 
-
-
-
-  
-  $new = $db->prepare("SELECT * FROM produits ORDER BY id DESC LIMIT 0,1");
-  $new->execute();
-
-  $newu = $db->prepare("SELECT * FROM produits ORDER BY id DESC LIMIT 1,1");
-  $newu->execute();
-
-  $newi = $db->prepare("SELECT * FROM produits ORDER BY id DESC LIMIT 2,1");
-  $newi->execute();
-
-  $newo = $db->prepare("SELECT * FROM produits ORDER BY id DESC LIMIT 3,1");
-  $newo->execute();
-
-  while ($n=$new->fetch(PDO::FETCH_OBJ)){ 
-  while ($u=$newu->fetch(PDO::FETCH_OBJ)){
-  while ($i=$newi->fetch(PDO::FETCH_OBJ)){
-  while ($o=$newo->fetch(PDO::FETCH_OBJ)){  
-
-
-
-
-
-
-
-
-
-
-
-
-
+foreach ($product as $p) {};
 
 
 
@@ -100,8 +60,8 @@ if (isset($_GET['id']) AND $_GET['id'] > 0)
     <div class="col">
       <div class="sac">
         <div class="info">
-          <h1><?php echo $n->name; ?></h1>
-          <p> <?php echo $n->stock; ?></p>
+          <h1><?php echo $p['name']; ?></h1>
+          <p><?php echo $p['stock']; ?></p>
         </div>
         <div class="choix">
           <div class="couleur row">
@@ -140,8 +100,8 @@ if (isset($_GET['id']) AND $_GET['id'] > 0)
     </div>
     <div class="col" >
       <div class="produ">
-        <div class="infoprod"><?php echo $n->name; ?> <br><?php echo $n->prix; ?></div>
-        <p class="desc"><?php echo $n->description; ?></p>
+        <div class="infoprod"><?php echo $p['name']; ?><br><?php echo $p['prix']; ?></div>
+        <p class="desc"><?php echo $p['description']; ?></p>
         <div class="detailprod"><button type="button" class="btn">Add to Card</button></div>
       </div>
     </div>
@@ -193,32 +153,3 @@ if (isset($_GET['id']) AND $_GET['id'] > 0)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
-
-}
-}
-}
-}
-
-
-
-
-?>

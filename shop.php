@@ -3,6 +3,8 @@ session_start();
 
 $bdd = new PDO('mysql:host=localhost;dbname=e-commerce','root','root');
 
+include_once "header.php";
+
 if (isset($_GET['id']) AND $_GET['id'] > 0)
 {
   $getid = intval($_GET['id']);
@@ -18,32 +20,26 @@ if (isset($_GET['id']) AND $_GET['id'] > 0)
 
 
 
-  
-  $new = $db->prepare("SELECT * FROM produits ");
+  $new = $db->prepare("SELECT * FROM produits ORDER BY id ");
   $new->execute();
-
-
-
-  while ($n=$new->fetch(PDO::FETCH_OBJ))
-  {
-    ?>
-    <h1><?php echo $n->name; ?></h1>
-    <h1><?php echo $n->description; ?></h1>
-    <h1><?php echo $n->prix; ?></h1>
-    <h1><?php echo $n->img; ?></h1>
-    <a href="produc.php?produc=<?php echo $n->name; ?>"><button type="button" class="btn">Voir détail</button></a>
-
-    <br><br>
-<br>
-
-
-    <?php
-  }
-
+  $prod = $new->fetchAll();
  
-
-
-
 ?>
 
+<?php
+  foreach ($prod as $p )  {
+?>
+    <div class="card">
+      <img class="card-img-top" src="admin/imgs/<?php echo $p['name']; ?>.jpeg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><?php echo $p["name"]; ?></h5>
+        <p class="card-text"><?php echo $p["prix"]; ?> €</p>
+        <div class="detailprod"><a href="produc.php?produc=<?php echo $p['name']; ?>"><button type="button" class="btn">Voir détail</button></a></div>
+      </div>
+    </div>
 
+<?php
+  }
+include_once "footer.php";
+?>
+<br><br>

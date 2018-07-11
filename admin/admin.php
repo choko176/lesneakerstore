@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 if(isset($_SESSION['username']))
 {
 	if(isset($_GET['action']))
@@ -16,13 +17,17 @@ if(isset($_SESSION['username']))
 
 				$db = new PDO('mysql:host=localhost;dbname=e-commerce', 'root','root');
 				
-				$img="ECO/ECO/admin/imgs".$_FILES['img']['name'];
+				$img=$_FILES['img']['name'];
+
+				echo $img;
 
 				$img_tmp=$_FILES['img']['tmp_name'];
+				echo $img_tmp;
 
 				if(!empty($img_tmp))
 				{
 					$image = explode('.', $img);
+					echo $img; 
 					$image_ext =end($image);
 					if(in_array(strtolower($image_ext),array ('png','jpeg','jpg')) === false)
 					{
@@ -61,6 +66,7 @@ if(isset($_SESSION['username']))
 								$img_final =imagecreatetruecolor($new_width[0],$new_height[1]);
 								imagecopyresampled($img_final, $img_src, 0, 0, 0, 0,$new_width[0], $new_height[1], $img_size[0], $img_size[1]);
 							}
+							echo $name;
 							imagejpeg($img_final,'imgs/'.$name.'.jpeg');
 						}
 					}
@@ -76,7 +82,7 @@ if(isset($_SESSION['username']))
 					$db->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER); // les noms de champs seront en caractères minuscules
 					$db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION); // les erreurs lanceront des exceptions
 
-					$insert = $db->prepare("INSERT INTO produits (name, description, prix, stock, img ) VALUES('$name','$description','$prix','$stock', '$img')");
+					$insert = $db->prepare("INSERT INTO produits (name, description, prix, stock, img ) VALUES('$name','$description','$prix','$stock', '$name')");
 					$insert->execute();
 
 				}
@@ -170,10 +176,6 @@ if(isset($_SESSION['username']))
 		}
 	}
 }
-else
-{
-	header('Location: ../index.html');
-}
 ?>
 
 <link href="../style/bootstrap.css" type="text/css" rel="stylesheet"/>
@@ -186,5 +188,6 @@ else
 
 
 
-<a href="../logout">deco</a><br/><br/>
+<a href="../logout.php">deco</a><br/><br/>
+
 
