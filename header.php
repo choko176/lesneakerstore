@@ -3,7 +3,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=e-commerce','root','root');
 ?>
 <html lang="fr">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -29,8 +28,15 @@ $bdd = new PDO('mysql:host=localhost;dbname=e-commerce','root','root');
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
         <a class="nav-link" href="shop.php">Shop</a>
-        <a class="nav-link" href="conect.php">Sign In</a>
-        <a class="nav-link" href="logout.php">Log Out</a>
+        <?php
+            if(isset($_SESSION['id'])){
+                echo '<a class="nav-link" href="logout.php">Log Out</a>';
+            }
+            else {echo ' <a class="nav-link" href="singin.php">Sign In</a>';
+                 }
+          ?>
+       
+        
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="panier.php"><img id="card" src="img/cart_1.png" alt="image-panier"></a>
@@ -40,4 +46,3 @@ $bdd = new PDO('mysql:host=localhost;dbname=e-commerce','root','root');
   </div>
 </nav>
 </header>
-<br>

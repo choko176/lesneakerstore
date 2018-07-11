@@ -7,9 +7,15 @@ $req        = "SELECT * FROM produits WHERE id = ".$_GET['id']."";
 $query      = $bdd->query($req); 
 $product    = $query->fetchAll();
 
+
+$req        = "SELECT * FROM produits WHERE id = ".$_GET['id'].""; 
+$query      = $bdd->query($req);
+$produc    = $query->fetch();
+
+
+
+
 foreach ($product as $p) {};
-
-
 
 ?>
 
@@ -55,13 +61,28 @@ foreach ($product as $p) {};
          <div class="container w3-container">
   <div class="row">
     <div class="img-produit col">
-        <img class="imga" src="img/produit1.jpg" alt="produit">
+        <img class="imga" src="admin/imgs/<?php echo $p['name']; ?>.jpeg" alt="produit">
     </div>
     <div class="col">
       <div class="sac">
         <div class="info">
           <h1><?php echo $p['name']; ?></h1>
-          <p><?php echo $p['stock']; ?></p>
+            <?php
+            echo $produc['stock'];
+
+            if(isset($produc['stock']) && $produc['stock'] > 0)
+            {
+              ?>
+                <p>stoke on</p>
+              <?php
+            }
+            else 
+              {
+                ?>
+                <p>stoke off</p>
+                <?php
+              }
+              ?>
         </div>
         <div class="choix">
           <div class="couleur row">

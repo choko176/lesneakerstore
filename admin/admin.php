@@ -1,25 +1,5 @@
 <?php
 session_start();
-?>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<link href="style.css" type="text/css" rel="stylesheet"/>
-
-<h1>Bienvenue, <?php echo $_SESSION['username']; ?></h1>
-<br/>
-
-<a href="?action=add">Ajouter un produit</a><br/><br/>
-<a href="?action=modifyandsupp">Supp/Modifier un produit</a><br/><br/>
-
-
-
-<a href="../logout.php">deconnexion</a><br/><br/>
-
-
-
-
-<?php
-
 
 if(isset($_SESSION['username']))
 {
@@ -36,17 +16,13 @@ if(isset($_SESSION['username']))
 
 				$db = new PDO('mysql:host=localhost;dbname=e-commerce', 'root','root');
 				
-				$img=$_FILES['img']['name'];
-
-				echo $img;
+				$img="ECO/ECO/admin/imgs".$_FILES['img']['name'];
 
 				$img_tmp=$_FILES['img']['tmp_name'];
-				echo $img_tmp;
 
 				if(!empty($img_tmp))
 				{
 					$image = explode('.', $img);
-					echo $img; 
 					$image_ext =end($image);
 					if(in_array(strtolower($image_ext),array ('png','jpeg','jpg')) === false)
 					{
@@ -85,7 +61,6 @@ if(isset($_SESSION['username']))
 								$img_final =imagecreatetruecolor($new_width[0],$new_height[1]);
 								imagecopyresampled($img_final, $img_src, 0, 0, 0, 0,$new_width[0], $new_height[1], $img_size[0], $img_size[1]);
 							}
-							echo $name;
 							imagejpeg($img_final,'imgs/'.$name.'.jpeg');
 						}
 					}
@@ -101,7 +76,7 @@ if(isset($_SESSION['username']))
 					$db->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER); // les noms de champs seront en caractères minuscules
 					$db->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION); // les erreurs lanceront des exceptions
 
-					$insert = $db->prepare("INSERT INTO produits (name, description, prix, stock, img ) VALUES('$name','$description','$prix','$stock', '$name')");
+					$insert = $db->prepare("INSERT INTO produits (name, description, prix, stock, img ) VALUES('$name','$description','$prix','$stock', '$img')");
 					$insert->execute();
 
 				}
@@ -111,7 +86,7 @@ if(isset($_SESSION['username']))
 				}
 			}
 			?>
-			<form action="" method="post" enctype="multipart/form-data" class="ajoutprod">
+			<form action="" method="post" enctype="multipart/form-data">
 					<h3>Nom du produit :</h3><input type="text" name="name" >
 					<h3>Description :</h3><textarea  name="description"> </textarea>
 					<h3>Prix :</h3><input type="text" name="prix">
@@ -166,7 +141,7 @@ if(isset($_SESSION['username']))
 
 			$m =  $modify->fetch(PDO::FETCH_OBJ);
 			?>
-			<form action="" method="post" >
+			<form action="" method="post">
 					<h3>Nom du produit :</h3><input type="text" name="name" value="<?php echo $m->name; ?>">
 					<h3>Description :</h3><textarea  name="description" ><?php echo $m->description; ?> </textarea>
 					<h3>Prix :</h3><input type="text" name="prix"  value="<?php echo $m->prix; ?>">
@@ -195,4 +170,21 @@ if(isset($_SESSION['username']))
 		}
 	}
 }
+else
+{
+	header('Location: ../index.html');
+}
 ?>
+
+<link href="../style/bootstrap.css" type="text/css" rel="stylesheet"/>
+
+<h1>Bienvenue, <?php echo $_SESSION['username']; ?></h1>
+<br/>
+
+<a href="?action=add">Ajouter un produit</a><br/><br/>
+<a href="?action=modifyandsupp">Supp/Modifierun produit</a><br/><br/>
+
+
+
+<a href="../logout">deco</a><br/><br/>
+
