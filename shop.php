@@ -4,7 +4,11 @@ session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=e-commerce','root','root');
 
 include_once "header.php";
+?>
 
+<div class="shop">
+    <div class="card-group">
+<?php
 if (isset($_GET['id']) AND $_GET['id'] > 0)
 {
   $getid = intval($_GET['id']);
@@ -40,6 +44,10 @@ if (isset($_GET['id']) AND $_GET['id'] > 0)
 
 <?php
   }
+    ?>
+  </div>
+      </div>
+  <?php
 include_once "footer.php";
-?>
-<br><br>
+
+ 

@@ -249,6 +249,17 @@ input
 
 
 }
+.shop {
+    display: flex;
+    margin:0 auto;
+    margin-top: 100px;
+    width:80%;
+}
+
+.404 {
+    background-image: url(../img/404.jpg);
+}
+
 .new
 {
 	color: white;
