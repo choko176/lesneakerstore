@@ -6,7 +6,8 @@ $bdd = new PDO('mysql:host=localhost;dbname=e-commerce','root','root');
 include_once "header.php";
 ?>
 
-<div class="shop">
+<div class="row shop">
+       <h1 id="produit">Nos produits</h1>
     <div class="card-group">
 <?php
 if (isset($_GET['id']) AND $_GET['id'] > 0)
@@ -38,7 +39,7 @@ if (isset($_GET['id']) AND $_GET['id'] > 0)
       <div class="card-body">
         <h5 class="card-title"><?php echo $p["name"]; ?></h5>
         <p class="card-text"><?php echo $p["prix"]; ?> €</p>
-        <div class="detailprod"><a href="produc.php?produc=<?php echo $p['name']; ?>"><button type="button" class="btn">Voir détail</button></a></div>
+        <div class="detailprod"><a href="produc.php?id=<?php echo $p['id']; ?>"><button type="button" class="btn">Voir détail</button></a></div>
       </div>
     </div>
 

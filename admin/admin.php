@@ -1,5 +1,20 @@
 <?php
 session_start();
+?>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<link href="style.css" type="text/css" rel="stylesheet"/>
+
+
+<h1>Bienvenue, <?php echo $_SESSION['username']; ?></h1>
+
+<a href="?action=add">Ajouter un produit</a><br/><br/>
+<a href="?action=modifyandsupp">Supp/Modifier un produit</a><br/><br/>
+
+
+
+<a href="../logout.php">deconnexion</a><br/><br/>
+
+<?php
 
 if(isset($_SESSION['username']))
 {
@@ -16,9 +31,10 @@ if(isset($_SESSION['username']))
 
 				$db = new PDO('mysql:host=localhost;dbname=e-commerce', 'root','root');
 				
-				$img="ECO/ECO/admin/imgs".$_FILES['img']['name'];
+				$img=$_FILES['img']['name'];
 
 				$img_tmp=$_FILES['img']['tmp_name'];
+                echo "votre produit a bien été ajouter";
 
 				if(!empty($img_tmp))
 				{
@@ -47,7 +63,7 @@ if(isset($_SESSION['username']))
 						}
 						if ($img_src!== false)
 						{
-							$img_width=150;
+							$img_width=300;
 
 							if ($img_size[0]==$img_width) 
 							{
@@ -56,7 +72,7 @@ if(isset($_SESSION['username']))
 							else
 							{
 								$new_width[0]=$img_width;
-								$new_height[1]=150;
+								$new_height[1]=300;
 
 								$img_final =imagecreatetruecolor($new_width[0],$new_height[1]);
 								imagecopyresampled($img_final, $img_src, 0, 0, 0, 0,$new_width[0], $new_height[1], $img_size[0], $img_size[1]);
@@ -88,7 +104,7 @@ if(isset($_SESSION['username']))
 			?>
 			<form action="" method="post" enctype="multipart/form-data">
 					<h3>Nom du produit :</h3><input type="text" name="name" >
-					<h3>Description :</h3><textarea  name="description"> </textarea>
+					<h3>Description :</h3><textarea  name="description" > </textarea>
 					<h3>Prix :</h3><input type="text" name="prix">
 					<h3>Stock :</h3><input type="text" name="stock">
 					<h3>image :</h3><input type="file" name="img">
@@ -143,7 +159,7 @@ if(isset($_SESSION['username']))
 			?>
 			<form action="" method="post">
 					<h3>Nom du produit :</h3><input type="text" name="name" value="<?php echo $m->name; ?>">
-					<h3>Description :</h3><textarea  name="description" ><?php echo $m->description; ?> </textarea>
+					<h3>Description :</h3><textarea type="text" name="description" ><?php echo $m->description; ?> </textarea>
 					<h3>Prix :</h3><input type="text" name="prix"  value="<?php echo $m->prix; ?>">
 					<h3>Stock :</h3><input type="text" name="stock" value="<?php echo $m->stock; ?>">
 					<br>
@@ -172,19 +188,7 @@ if(isset($_SESSION['username']))
 }
 else
 {
-	header('Location: ../index.html');
+	header('Location: ../index.php');
 }
 ?>
-
-<link href="../style/bootstrap.css" type="text/css" rel="stylesheet"/>
-
-<h1>Bienvenue, <?php echo $_SESSION['username']; ?></h1>
-<br/>
-
-<a href="?action=add">Ajouter un produit</a><br/><br/>
-<a href="?action=modifyandsupp">Supp/Modifierun produit</a><br/><br/>
-
-
-
-<a href="../logout">deco</a><br/><br/>
 

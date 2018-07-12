@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 11 Juillet 2018 à 18:58
+-- Généré le :  Jeu 12 Juillet 2018 à 02:39
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -49,7 +49,7 @@ INSERT INTO `categorie` (`id`, `nom`) VALUES
 CREATE TABLE `produits` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `description` text NOT NULL,
+  `description` varchar(255) NOT NULL,
   `prix` int(11) NOT NULL,
   `stock` varchar(255) DEFAULT '1',
   `img` varchar(255) NOT NULL
@@ -60,10 +60,10 @@ CREATE TABLE `produits` (
 --
 
 INSERT INTO `produits` (`id`, `name`, `description`, `prix`, `stock`, `img`) VALUES
-(14, 'Air Jordan 3 Retro', 'air jordan 3 RETRO', 220, '10', 'ECO/ECO/admin/imgsproduct (3).jpg'),
-(15, 'air max 1 camo', ' air max 1 camo', 175, '10', 'ECO/ECO/admin/imgsair max camo.jpg'),
-(11, 'Nike Air Max 97 SE', ' La Nike Air Max 97 a bousculÃ© le monde du running avec son unitÃ© Nike Air rÃ©volutionnaire sur toute la longueur de la chaussure. La chaussure Nike Air Max 97 SE pour Femme revisite le modÃ¨le original avec de nouvelles couleurs et matiÃ¨res.', 190, '10', 'Nike Air Max 97 SE'),
-(12, 'Air Jordan x Levis', ' Nike x Leviâ€™s Air Jordan  ', 210, '3', 'Nike x Levis Air Jordan');
+(21, 'Air Max 1 Camo', '  Nike Air Max 1 SP Desert Combat Camo ont un dessus en canvas premium camo dans des teintes dÃ©sertiques et hyperfuse beige complÃ©tÃ© par une semelle de la mÃªme couleur', 145, '10', 'PRO.jpg'),
+(23, 'Air Jordan 3 Retro', 'La Air Jordan 3 Black Cement a vu le jour en 1988, aux pieds de Sa Majeste Michael Jordan', 190, '10', 'product (3).jpg'),
+(24, 'Air max 97', ' Des classiques qui prennent de la hauteur, ces sneakers Air Max 97 Ultra de Nike sont des essentiels pour la tenue foot.', 175, '2', 'product (2).jpg'),
+(26, 'Air Jordan x Levis', ' La nouvelle collaboration Levis x Air Jordan 4 Denim, devoilee par Travis Scott et Eric Koston sur les reseaux, devrait faire ses debuts courant janvier.', 210, '3', 'product (5).jpg');
 
 -- --------------------------------------------------------
 
@@ -113,7 +113,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT pour la table `users`
 --

@@ -52,8 +52,12 @@ body {
 }
 h1 {
     font-size:3em;
-    margin:-10px;
+    margin:10px;
 }
 .ajoutprod {
     margin-top: 50px;
+}
+.admin {
+    font-size: 2em;
+    margin-bottom: 20px;
 }

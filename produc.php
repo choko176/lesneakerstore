@@ -50,7 +50,7 @@ foreach ($product as $p) {};
         <a class="nav-link" href="#">Sign in</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#"><img id="card" src="img/cart_1.png" alt="image-panier"></a>
+        <a class="nav-link" href="index.php"><img id="card" src="img/cart_1.png" alt="image-panier"></a>
       </li>
     </ul>
 
@@ -68,28 +68,23 @@ foreach ($product as $p) {};
         <div class="info">
           <h1><?php echo $p['name']; ?></h1>
             <?php
-            echo $produc['stock'];
+            //echo $produc['stock'];
 
             if(isset($produc['stock']) && $produc['stock'] > 0)
             {
               ?>
-                <p>stoke on</p>
+                <p class="green" >stoke on</p>
               <?php
             }
             else 
               {
                 ?>
-                <p>stoke off</p>
+                <p class="red" >stoke off</p>
                 <?php
               }
               ?>
         </div>
         <div class="choix">
-          <div class="couleur row">
-            <div class="blue col">blue</div>
-            <div class="red col">red</div>
-            <div class="green col">green</div>
-          </div>
           <div class="tail">
               <table>
                <tr>
@@ -121,9 +116,12 @@ foreach ($product as $p) {};
     </div>
     <div class="col" >
       <div class="produ">
-        <div class="infoprod"><?php echo $p['name']; ?><br><?php echo $p['prix']; ?></div>
+        <div class="infoprod"><?php echo $p['name']; ?><br/><br/><?php echo $p['prix']; ?>€</div><br/>
         <p class="desc"><?php echo $p['description']; ?></p>
-        <div class="detailprod"><button type="button" class="btn">Add to Card</button></div>
+        <div class="detailprod"><a href="panier.php?action=ajout&amp;l=<?php echo $p['name']; ?>&amp;q=1&amp;p=<?php echo $p['prix']; ?>"><button type="button" class="btn"> Ajouter au panier </button></a></div>
+    </div><br/>
+
+
       </div>
     </div>
   </div>

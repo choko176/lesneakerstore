@@ -260,6 +260,20 @@ input
 .404 {
     background-image: url(../img/404.jpg);
 }
+.info h1 {
+    font-family: 'PT Sans', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.infoprod {
+    font-family: 'Quicksand', sans-serif;
+}
+.caddie {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
 
 .new
 {
@@ -282,11 +296,33 @@ h2
 }
 table
 {
-    border-collapse: collapse;
+    margin: 0 auto;
 }
 td, th 
 {
     border: 1px solid black;
     padding: 5px;
     font-size: 2em;
+}
+.green {
+    background-color: green;
+    display:inline-block;
+    color: white;
+    padding: 2px;
+}
+.red {
+    background-color: red;
+    display:inline-block;
+    color: white;
+    padding: 2px;
+}
+
+.choix {
+    margin-top: 10px;
+}
+.desc {
+    font-family: 'Quicksand', sans-serif;
+}
+.card {
+    width: 200px;
 }
